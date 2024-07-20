@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-:root[data-theme="light"] {
+:root[data-mantine-color-scheme="light"] {
   --text: #0b0e0e;
   --background: #f5f9fa;
   --primary: #4ca5bd;
   --secondary: #8bd1e4;
   --accent: #4ec8e9;
 }
-:root[data-theme="dark"] {
+:root[data-mantine-color-scheme="dark"] {
   --text: #f1f4f4;
   --background: #05090a;
   --primary: #429ab3;
@@ -69,8 +69,4 @@ a{
   text-decoration: none;
   color: var(--text);
   font-weight: bold;
-}
-
-.dark-switch{
-  justify-self: flex-end;
 }

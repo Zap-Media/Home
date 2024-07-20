@@ -1,11 +1,36 @@
 import '@mantine/core/styles.css';
-import { MantineProvider, Grid, Button, Switch } from '@mantine/core';
+import { MantineProvider, Grid, Button, Switch, rem } from '@mantine/core';
+import { useState, useEffect } from 'react';
+import { IconSun, IconMoonStars } from '@tabler/icons-react';
 
-const mode = () => {
-  console.log("yes")
-}
+type ChangeEvent = React.ChangeEvent<HTMLInputElement>
+type Theme = 'dark' | 'light'
 
 function App() {
+  const [mode, setMode] = useState<Theme>("dark");
+  
+  const handleChange = (e: ChangeEvent) => setMode(e.target.checked ? 'dark' : 'light')
+  
+  useEffect(() => {
+      document.documentElement.setAttribute('data-mantine-color-scheme', mode);
+  }, [mode]);
+
+  const sunIcon = (
+    <IconSun
+      style={{ width: rem(16), height: rem(16) }}
+      stroke={2.5}
+      color='#ffffff'
+    />
+  );
+
+  const moonIcon = (
+    <IconMoonStars
+      style={{ width: rem(16), height: rem(16) }}
+      stroke={2.5}
+      color='#000000'
+    />
+  );
+
   return (
     <MantineProvider>
       <div className="center">
@@ -24,7 +49,7 @@ function App() {
             </Grid.Col>
           </Grid>
         </div>
-        <Switch className='dark-switch' size="lg" onLabel="Dark" offLabel="Light" onClick={mode} />
+        <Switch className='dark-switch' size="lg" onLabel={sunIcon} offLabel={moonIcon} onChange={handleChange} checked={mode === 'dark'} />
       </div>
     </MantineProvider>
   )
